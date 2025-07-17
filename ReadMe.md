@@ -4,7 +4,7 @@ Dieses Projekt demonstriert, wie der **rebounce Mastertag** (Kupona Tracking) in
 
 ---
 
-## 1. Tracking-Script im Layout einbinden
+## 1. [Tracking-Script im Layout einbinden](./app/layout.tsx)
 
 Um das Kupona-Tracking auf **allen Seiten** der Anwendung verfügbar zu machen, wird das Script global in `app/layout.tsx` eingebunden. Dies geschieht mit dem Next.js `<Script>`-Component und der Option `strategy="beforeInteractive"`.
 
@@ -49,7 +49,7 @@ Die Variablen sollten **erst gesetzt werden, wenn die nötigen Daten vorhanden s
 
 ---
 
-### Beispiel-Implementierung der Hook
+### [Beispiel-Implementierung der Hook](./hooks/use-kupona-tracking.ts)
 
 ```ts
 import { useEffect } from "react";
@@ -91,7 +91,7 @@ export function useKuponaTracking({
 
 ## 3. Verwendung des Tracking-Hooks
 
-### Produktdetailseite (`app/product/[id]/page.tsx`):
+### [Produktdetailseite (`app/product/[id]/page.tsx`):](./app/product/[id]/page.tsx)
 
 ```tsx
 useKuponaTracking({
@@ -101,7 +101,7 @@ useKuponaTracking({
 });
 ```
 
-### Kategorieseite (`app/category/[category]/page.tsx`):
+### [Kategorieseite (`app/category/[category]/page.tsx`):](./app/category/[category]/page.tsx)
 
 ```tsx
 useKuponaTracking({
@@ -115,7 +115,7 @@ useKuponaTracking({
 
 ---
 
-## 4. Typen (für TypeScript-Projekte)
+## 4. [Typen (für TypeScript-Projekte)](./types/global.d.ts)
 
 Wenn du TypeScript verwendest, solltest du `types/global.d.ts` im Projekt anlegen, damit die globalen Variablen typisiert sind:
 
