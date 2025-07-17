@@ -10,9 +10,9 @@ import {
 } from "@/components/ui/select";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useKuponaTracking } from "@/hooks/use-kupona-tracking";
 
 export default function CategoryPage() {
-  // const [category, setCategory] = useState<string>("");
   const [products, setProducts] = useState<any[]>([]);
   const { category } = useParams<{ category: string }>();
 
@@ -20,13 +20,12 @@ export default function CategoryPage() {
     fetchProduct();
   }, []);
 
-  useEffect(() => {
-    if (!products || !category) return;
-
-    window.kp_site = "category";
-    window.kp_product_id = products.map((p) => p.id).join(",");
-    window.kp_category_id = category;
-  }, [products]);
+  useKuponaTracking({
+    pagetype: "category",
+    productId:
+      products && products.length > 0 ? products.map((p) => p.id) : undefined,
+    categoryId: category,
+  });
 
   const fetchProduct = async () => {
     const res = await fetch(

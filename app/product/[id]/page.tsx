@@ -6,16 +6,9 @@ import { Badge } from "@/components/ui/badge";
 import { Star, Heart, Truck, Shield, RotateCcw } from "lucide-react";
 import { AddToCartButton } from "@/components/add-to-cart-button";
 import { useEffect, useState } from "react";
+import { useKuponaTracking } from "@/hooks/use-kupona-tracking";
 import { useParams } from "next/navigation";
 
-// define global window variables for Kupona tracking
-declare global {
-  interface Window {
-    kp_site?: string | number;
-    kp_product_id?: number | string;
-    kp_category_id?: string | number;
-  }
-}
 
 export default function ProductPage() {
   const [product, setProduct] = useState<any>(null);
@@ -25,13 +18,11 @@ export default function ProductPage() {
     fetchProduct();
   }, []);
 
-  useEffect(() => {
-    if (!product) return;
-
-    window.kp_site = "productdetail";
-    window.kp_product_id = product.id;
-    window.kp_category_id = product?.category;
-  }, [product]);
+  useKuponaTracking({
+    pagetype: "productdetail",
+    productId: product?.id,
+    categoryId: product?.category,
+  });
 
   const fetchProduct = async () => {
     const id = params.id;
