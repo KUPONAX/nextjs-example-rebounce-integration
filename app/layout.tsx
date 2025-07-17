@@ -23,7 +23,7 @@ export default function RootLayout({
       <head>
         <Script
           strategy="beforeInteractive"
-          src="https://retrack-kupona.kuponacdn.de/customers/82515.min.js"
+          src="https://retrack-kupona.kuponacdn.de/customers/00000.min.js"
         />
       </head>
       <body className={inter.className}>
